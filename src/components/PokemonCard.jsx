@@ -10,16 +10,23 @@ export default class PokemonCard extends Component {
         image: ''
       }
     }
+    this.loadingDiv = <div className="pokemonCard">Loading...</div>
   }
 
-  async componentDidMount () {
-
+  componentDidMount () {
+    const randomPokemonId = Math.ceil(Math.random() * 1025)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonId}`)
+      .then(response => response.json())
+      .then(data => this.setState({
+        pokemon: {
+          name: data.name,
+          image: data.sprites.front_default
+        }
+      }))
   }
 
   render () {
-    const loadingDiv = <div className = "pokemonCard">Loading...</div>
-    if (!this.state.pokemon) return loadingDiv
-    if (!this.state.pokemon.name) return loadingDiv
+    if (!this.state.pokemon.name && !this.state.pokemon.image) return this.loadingDiv
 
     return (
       <div className="pokemonCard">
