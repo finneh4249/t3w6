@@ -42,3 +42,10 @@ button:hover {
   justify-content: center;
   padding: 1rem;
 }
+
+.pokemonCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 1rem;
+}

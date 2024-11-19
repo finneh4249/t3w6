@@ -33,8 +33,14 @@ export default class App extends Component {
             Remove
           </button>
         </div>
+        <div className= 'pokemonCards'>
+        {
+        Array(this.state.numberOfPokemon)
+          .fill(null)
+          .map((element, index) => <PokemonCard key={index} />)
+      }
 
-        <PokemonCard />
+        </div>
       </>
     )
   }
